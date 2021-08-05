@@ -1,0 +1,5 @@
+server:
+  port: 16666
+spring:
+  application:
+    name: point-agent
