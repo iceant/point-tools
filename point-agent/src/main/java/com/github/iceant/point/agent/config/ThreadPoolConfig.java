@@ -12,4 +12,5 @@ public class ThreadPoolConfig {
     public ExecutorService executorService(){
         return Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
     }
+
 }

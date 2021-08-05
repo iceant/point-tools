@@ -31,34 +31,13 @@ public class CommandService {
         }
     }
 
-    public <T> CompletableFuture<T> execute(ICommandCallback callback, String ... command){
+    public <T> CompletableFuture<CommandResult> execute(ICommandCallback callback, String ... command){
         return execute(callback, null, command);
     }
 
-    public <T> CompletableFuture<T> execute(ICommandCallback callback, File path, String ... command){
-//        Runnable runnable = new Runnable() {
-//            @Override
-//            public void run() {
-//                Process process = null;
-//                try{
-//                    process = Runtime.getRuntime().exec(command, null, path);
-//                    if(process!=null) {
-//                        callback.onSuccess(process.getInputStream());
-//                        callback.onError(process.getErrorStream());
-//                        callback.onReturn(process.waitFor());
-//                    }
-//                } catch (Exception e) {
-//                    throw new RuntimeException(e);
-//                } finally {
-//                    if(process!=null){
-//                        process.destroy();
-//                        process=null;
-//                    }
-//                }
-//            }
-//        };
+    public <T> CompletableFuture<CommandResult> execute(ICommandCallback callback, File path, String ... command){
 
-        return (CompletableFuture<T>) CompletableFuture.supplyAsync(new Supplier<Process>() {
+        return CompletableFuture.supplyAsync(new Supplier<Process>() {
             @Override
             public Process get() {
                 try {
@@ -67,7 +46,7 @@ public class CommandService {
                     throw new RuntimeException(e);
                 }
             }
-        }).thenApplyAsync(new Function<Process, CommandResult>() {
+        }, executorService).thenApplyAsync(new Function<Process, CommandResult>() {
             @Override
             public CommandResult apply(Process process) {
                 CommandResult result = CommandResult.builder().build();
@@ -82,24 +61,7 @@ public class CommandService {
                     process.destroy();
                 }
             }
-        });
-//                .thenAccept(new Consumer<Process>() {
-//            @Override
-//            public void accept(Process process){
-//                callback.onSuccess(process.getInputStream());
-//                callback.onError(process.getErrorStream());
-//                try {
-//                    callback.onReturn(process.waitFor());
-//                } catch (InterruptedException e) {
-//                    throw new RuntimeException(e);
-//                }finally {
-//                    process.destroy();
-//                }
-//            }
-//        });
-
-
-//        return executorService.submit();
+        }, executorService);
     }
 
     public Future executeAndWait(ICommandCallback callback, long timeout, TimeUnit unit, File path, String ... command){
