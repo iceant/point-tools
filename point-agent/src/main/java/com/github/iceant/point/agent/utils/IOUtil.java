@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class IOUtil {
-    public static String readAsStream(InputStream inputStream, String charset){
+    public static String readAsString(InputStream inputStream, String charset){
         if(inputStream==null) return null;
         if(charset==null||charset.length()<1) charset = "UTF-8";
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -28,5 +28,9 @@ public class IOUtil {
             }
         }
 
+    }
+
+    public static String readAsString(InputStream inputStream) {
+        return readAsString(inputStream, "UTF-8");
     }
 }

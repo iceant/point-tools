@@ -3,3 +3,6 @@ server:
 spring:
   application:
     name: point-agent
+app:
+  console:
+    charset: GBK

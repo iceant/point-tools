@@ -1,0 +1,4 @@
+POST http://localhost:16666/api/cmd/v1/run
+Content-Type: application/json
+
+dir c:\Windows
