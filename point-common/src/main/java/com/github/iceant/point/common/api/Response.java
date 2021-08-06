@@ -5,24 +5,27 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class Response<T> {
     T data;
-    Integer code;
+    Integer status;
     String message;
+    Date timestamp;
 
     public static <T> Response<T> success(int code, T value, String message){
-        return (Response<T>) builder().code(code).data(value).message(message).build();
+        return (Response<T>) builder().status(code).data(value).message(message).timestamp(new Date()).build();
     }
 
     public static <T> Response<T> success(T value){
-        return (Response<T>) builder().code(200).data(value).message("success").build();
+        return (Response<T>) builder().status(200).data(value).message("success").timestamp(new Date()).build();
     }
 
     public static <T> Response<T> fail(int code, String message){
-        return (Response<T>) builder().code(code).message(message).build();
+        return (Response<T>) builder().status(code).message(message).timestamp(new Date()).build();
     }
 }

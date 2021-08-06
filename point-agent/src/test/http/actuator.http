@@ -1,0 +1,4 @@
+GET http://localhost:16666/actuator/health
+
+###
+POST http://localhost:16666/actuator/shutdown

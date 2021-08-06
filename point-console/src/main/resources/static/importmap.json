@@ -1,0 +1,7 @@
+{
+  "imports": {
+    "main": "/static/app/main.js",
+    "sheet": "/static/libs/sheet.js",
+    "element-plus": "/static/deps/element-plus/lib/index.full.js"
+  }
+}

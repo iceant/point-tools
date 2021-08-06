@@ -24,9 +24,7 @@ public class CommandController {
 
     @PostMapping(path = {"/run"})
     public Mono<Object> execute(@RequestBody String command) throws ExecutionException, InterruptedException {
-
         CompletableFuture<CommandResult> future = commandService.execute(null, CommandService.makeCommand(command));
-
         return Mono.just(Response.success(future.get()));
     }
 }
