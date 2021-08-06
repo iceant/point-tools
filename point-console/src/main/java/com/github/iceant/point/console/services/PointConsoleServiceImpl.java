@@ -5,20 +5,25 @@ import com.github.iceant.point.common.dto.AgentOnlineDTO;
 import com.github.iceant.point.console.mapper.IAgentMapper;
 import com.github.iceant.point.console.storage.entity.TAgentEntity;
 import com.github.iceant.point.console.storage.entity.TEventLog;
+import com.github.iceant.point.console.storage.repo.TAgentCommandHistoryRepository;
 import com.github.iceant.point.console.storage.repo.TAgentRepository;
 import com.github.iceant.point.console.storage.repo.TEventLogRepository;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.Optional;
 
 @Service
 public class PointConsoleServiceImpl implements IPointConsoleService{
     final TAgentRepository tAgentRepository;
     final TEventLogRepository tEventLogRepository;
+    final TAgentCommandHistoryRepository tAgentCommandHistoryRepository;
 
-    public PointConsoleServiceImpl(TAgentRepository tAgentRepository, TEventLogRepository tEventLogRepository) {
+    public PointConsoleServiceImpl(TAgentRepository tAgentRepository, TEventLogRepository tEventLogRepository, TAgentCommandHistoryRepository tAgentCommandHistoryRepository) {
         this.tAgentRepository = tAgentRepository;
         this.tEventLogRepository = tEventLogRepository;
+        this.tAgentCommandHistoryRepository = tAgentCommandHistoryRepository;
     }
 
     @Override
@@ -65,5 +70,13 @@ public class PointConsoleServiceImpl implements IPointConsoleService{
                 .build();
         tEventLogRepository.saveAndFlush(log);
         return entity;
+    }
+
+    @Override
+    public Optional<TAgentEntity> getAgentByHostAndPort(String agentHost, Integer agentPort) {
+        return tAgentRepository.findOne(Example.of(TAgentEntity.builder()
+                .host(agentHost)
+                .port(agentPort)
+                .build()));
     }
 }

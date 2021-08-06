@@ -3,6 +3,8 @@ package com.github.iceant.point.agent.controller;
 import com.github.iceant.point.agent.services.CommandResult;
 import com.github.iceant.point.agent.services.CommandService;
 import com.github.iceant.point.common.api.Response;
+import com.github.iceant.point.common.dto.AgentCommandRequestDTO;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +16,7 @@ import java.util.concurrent.ExecutionException;
 
 @RestController
 @RequestMapping(path = {"/api/cmd/v1"})
+@Slf4j
 public class CommandController {
 
     final CommandService commandService;
@@ -22,9 +25,10 @@ public class CommandController {
         this.commandService = commandService;
     }
 
-    @PostMapping(path = {"/run"})
-    public Mono<Object> execute(@RequestBody String command) throws ExecutionException, InterruptedException {
-        CompletableFuture<CommandResult> future = commandService.execute(null, CommandService.makeCommand(command));
+    @PostMapping(path = {"/run", "/exec"})
+    public Mono<Object> execute(@RequestBody AgentCommandRequestDTO dto) throws ExecutionException, InterruptedException {
+        log.info("Received Request:{}", dto);
+        CompletableFuture<CommandResult> future = commandService.execute(null, CommandService.makeCommand(dto.getCmd()));
         return Mono.just(Response.success(future.get()));
     }
 }

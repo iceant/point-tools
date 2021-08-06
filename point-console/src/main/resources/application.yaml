@@ -18,3 +18,5 @@ spring:
     time-zone: "GMT+8"
     serialization:
       write-dates-as-timestamps: false
+  messages:
+    basename: i18n/messages

@@ -1,6 +1,6 @@
 package com.github.iceant.point.agent.components;
 
-import com.github.iceant.point.common.InetAddressUtil;
+import com.github.iceant.point.common.util.InetAddressUtil;
 import com.github.iceant.point.common.api.Response;
 import com.github.iceant.point.common.dto.AgentOfflineDTO;
 import com.github.iceant.point.common.dto.AgentOnlineDTO;
