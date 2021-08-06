@@ -2,6 +2,7 @@
   "imports": {
     "main": "/static/app/main.js",
     "sheet": "/static/libs/sheet.js",
-    "element-plus": "/static/deps/element-plus/lib/index.full.js"
+    "element-plus": "/static/deps/element-plus/lib/index.full.js",
+    "agent-list": "/static/components/agent-list/main.js"
   }
 }
