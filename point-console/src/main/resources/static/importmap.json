@@ -3,6 +3,7 @@
     "main": "/static/app/main.js",
     "sheet": "/static/libs/sheet.js",
     "element-plus": "/static/deps/element-plus/lib/index.full.js",
-    "agent-list": "/static/components/agent-list/main.js"
+    "agent-list": "/static/components/agent-list/main.js",
+    "agent-menu": "/static/components/agent-menu/main.js"
   }
 }

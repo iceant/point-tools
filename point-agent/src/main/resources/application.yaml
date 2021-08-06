@@ -12,7 +12,7 @@ app:
     charset: GBK
 point:
   console:
-    server-addr: http://localhost:10101
+    server-addr: http://localhost:20202
 
 management:
   endpoints:

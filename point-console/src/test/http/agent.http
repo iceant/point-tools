@@ -1,20 +1,20 @@
-POST http://localhost:10101/api/agent/v1/register
+POST http://localhost:20202/api/agent/v1/register
 Content-Type: application/json
 
 {"host": "localhost", "port": 16666}
 
 ###
-POST http://localhost:10101/api/agent/v1/offline
+POST http://localhost:20202/api/agent/v1/offline
 Content-Type: application/json
 
 {"host": "localhost", "port": 16666}
 
 ###
-POST http://localhost:10101/api/agent/v1/send
+POST http://localhost:20202/api/agent/v1/send
 Content-Type: application/json
 
 {
-  "host": "192.168.0.196",
+  "host": "172.29.96.1",
   "port": 16666,
-  "command": "dir d:"
+  "command": "dir c:"
 }

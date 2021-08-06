@@ -80,7 +80,6 @@
                 <version>master</version>
             </dependency>
 
-
             <dependency>
                 <groupId>org.mapstruct</groupId>
                 <artifactId>mapstruct</artifactId>
