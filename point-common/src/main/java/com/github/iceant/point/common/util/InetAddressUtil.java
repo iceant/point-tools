@@ -1,4 +1,4 @@
-package com.github.iceant.point.common;
+package com.github.iceant.point.common.util;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
