@@ -1,7 +1,9 @@
 package com.github.iceant.point.console.services;
 
+import com.github.iceant.point.common.dto.AgentCommandRequestDTO;
 import com.github.iceant.point.common.dto.AgentOfflineDTO;
 import com.github.iceant.point.common.dto.AgentOnlineDTO;
+import com.github.iceant.point.console.storage.entity.TAgentCommandHistory;
 import com.github.iceant.point.console.storage.entity.TAgentEntity;
 import com.github.iceant.point.console.storage.entity.TEventLog;
 
@@ -17,4 +19,6 @@ public interface IPointConsoleService {
     TAgentEntity handleOffline(AgentOfflineDTO dto);
 
     Optional<TAgentEntity> getAgentByHostAndPort(String agentHost, Integer agentPort);
+
+    TAgentCommandHistory save(TAgentCommandHistory history);
 }

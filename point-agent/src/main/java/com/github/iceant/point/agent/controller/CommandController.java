@@ -1,6 +1,6 @@
 package com.github.iceant.point.agent.controller;
 
-import com.github.iceant.point.agent.services.CommandResult;
+import com.github.iceant.point.common.dto.CommandResult;
 import com.github.iceant.point.agent.services.CommandService;
 import com.github.iceant.point.common.api.Response;
 import com.github.iceant.point.common.dto.AgentCommandRequestDTO;

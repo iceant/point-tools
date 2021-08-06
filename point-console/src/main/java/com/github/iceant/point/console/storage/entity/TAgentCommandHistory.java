@@ -28,7 +28,19 @@ public class TAgentCommandHistory implements Serializable {
     private String agentHost;
 
     @Column(name = "agent_port", nullable = false)
-    private String agentPort;
+    private Integer agentPort;
+
+    @Column(name = "request_host")
+    private String requestHost;
+
+    @Column(name = "request_port")
+    private Integer requestPort;
+
+    @Column(name = "sender_host")
+    private String senderHost;
+
+    @Column(name = "sender_port")
+    private Integer senderPort;
 
     private Date timestamp;
 

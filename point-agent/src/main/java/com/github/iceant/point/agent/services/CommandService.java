@@ -2,6 +2,7 @@ package com.github.iceant.point.agent.services;
 
 import com.github.iceant.point.agent.utils.IOUtil;
 import com.github.iceant.point.agent.utils.OSUtil;
+import com.github.iceant.point.common.dto.CommandResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

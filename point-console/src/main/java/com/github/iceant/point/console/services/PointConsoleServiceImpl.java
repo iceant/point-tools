@@ -1,8 +1,10 @@
 package com.github.iceant.point.console.services;
 
+import com.github.iceant.point.common.dto.AgentCommandRequestDTO;
 import com.github.iceant.point.common.dto.AgentOfflineDTO;
 import com.github.iceant.point.common.dto.AgentOnlineDTO;
 import com.github.iceant.point.console.mapper.IAgentMapper;
+import com.github.iceant.point.console.storage.entity.TAgentCommandHistory;
 import com.github.iceant.point.console.storage.entity.TAgentEntity;
 import com.github.iceant.point.console.storage.entity.TEventLog;
 import com.github.iceant.point.console.storage.repo.TAgentCommandHistoryRepository;
@@ -78,5 +80,10 @@ public class PointConsoleServiceImpl implements IPointConsoleService{
                 .host(agentHost)
                 .port(agentPort)
                 .build()));
+    }
+
+    @Override
+    public TAgentCommandHistory save(TAgentCommandHistory history) {
+        return tAgentCommandHistoryRepository.saveAndFlush(history);
     }
 }
