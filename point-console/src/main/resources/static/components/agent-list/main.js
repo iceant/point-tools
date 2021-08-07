@@ -1,10 +1,24 @@
-System.register([], function(_e, _c){
+System.register(['./template.html'], function(_e, _c){
+    let template;
     return {
-        setters:[],
+        setters:[function(_){template=_.default}],
         execute:function(){
+            let data = [];
             _e({
-                template:'<div>Agent List</div>'
+                template: template,
+                data() {
+                    return {
+                        tableData: []
+                    }
+                },
+                beforeCreate(){
+                    let self = this;
+                    axios.get('/api/agent/v1/list').then(function(response){
+                        self.tableData = response.data.data;
+                    }).catch(error=>console.log(error));
+                }
             });
         }
     }
+
 });

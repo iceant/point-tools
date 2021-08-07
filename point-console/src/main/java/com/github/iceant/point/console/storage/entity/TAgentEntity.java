@@ -25,6 +25,8 @@ public class TAgentEntity implements Serializable {
     private String host;
     @Id
     private Integer port;
+    
+    private String operationSystem;
 
     private Date onlineDate;
 

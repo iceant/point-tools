@@ -2,6 +2,7 @@ package com.github.iceant.point.console.mapper;
 
 import com.github.iceant.point.common.dto.AgentOfflineDTO;
 import com.github.iceant.point.common.dto.AgentOnlineDTO;
+import com.github.iceant.point.console.api.vo.AgentVO;
 import com.github.iceant.point.console.storage.entity.TAgentEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
@@ -13,4 +14,6 @@ public interface IAgentMapper {
     TAgentEntity registerDtoToEntity(AgentOnlineDTO dto);
 
     TAgentEntity offlineDtoToEntity(AgentOfflineDTO dto);
+
+    AgentVO entityToVO(TAgentEntity entity);
 }

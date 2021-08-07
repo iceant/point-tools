@@ -14,5 +14,6 @@ import java.util.Date;
 public class AgentOnlineDTO {
     private String host;
     private Integer port;
+    private String operationSystem;
     private Date onlineDate;
 }

@@ -70,4 +70,8 @@ public class OSUtil {
     public static boolean isOpenVMS(){
         return OS.indexOf("openvms")>=0;
     }
+
+    public static String getOS() {
+        return OS;
+    }
 }

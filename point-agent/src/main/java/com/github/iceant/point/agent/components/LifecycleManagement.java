@@ -1,5 +1,6 @@
 package com.github.iceant.point.agent.components;
 
+import com.github.iceant.point.agent.utils.OSUtil;
 import com.github.iceant.point.common.util.InetAddressUtil;
 import com.github.iceant.point.common.api.Response;
 import com.github.iceant.point.common.dto.AgentOfflineDTO;
@@ -29,6 +30,7 @@ public class LifecycleManagement {
         AgentOnlineDTO dto = AgentOnlineDTO.builder()
                 .host(InetAddressUtil.getLocalHostAddress())
                 .port(port)
+                .operationSystem(OSUtil.getOS())
                 .onlineDate(new Date())
                 .build();
         WebClient webClient = WebClient.builder().baseUrl(serverAddr).build();
@@ -43,6 +45,7 @@ public class LifecycleManagement {
         AgentOfflineDTO dto = AgentOfflineDTO.builder()
                 .host(InetAddressUtil.getLocalHostAddress())
                 .port(port)
+                .operationSystem(OSUtil.getOS())
                 .offlineDate(new Date())
                 .build();
         WebClient webClient = WebClient.builder().baseUrl(serverAddr).build();

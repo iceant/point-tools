@@ -7,6 +7,7 @@ import com.github.iceant.point.console.storage.entity.TAgentCommandHistory;
 import com.github.iceant.point.console.storage.entity.TAgentEntity;
 import com.github.iceant.point.console.storage.entity.TEventLog;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface IPointConsoleService {
@@ -21,4 +22,6 @@ public interface IPointConsoleService {
     Optional<TAgentEntity> getAgentByHostAndPort(String agentHost, Integer agentPort);
 
     TAgentCommandHistory save(TAgentCommandHistory history);
+
+    List<TAgentEntity> listAllAgent();
 }

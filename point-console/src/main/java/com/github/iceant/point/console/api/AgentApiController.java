@@ -10,6 +10,8 @@ import com.github.iceant.point.common.util.InetAddressUtil;
 import com.github.iceant.point.common.util.MapperUtil;
 import com.github.iceant.point.common.util.WebClientUtil;
 import com.github.iceant.point.console.api.dto.AgentCommandDTO;
+import com.github.iceant.point.console.api.vo.AgentVO;
+import com.github.iceant.point.console.mapper.IAgentMapper;
 import com.github.iceant.point.console.services.IPointConsoleService;
 import com.github.iceant.point.console.storage.entity.TAgentCommandHistory;
 import com.github.iceant.point.console.storage.entity.TAgentEntity;
@@ -17,16 +19,11 @@ import com.github.iceant.point.console.utils.ResponseUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Date;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 import static com.github.iceant.point.console.utils.AgentRequestUtil.makeBaseUrl;
 
@@ -104,5 +101,15 @@ public class AgentApiController {
             pointConsoleService.save(history);
             throw new RuntimeException(err);
         }
+    }
+
+    @GetMapping(path = {"/list"})
+    public Response list(){
+        List<TAgentEntity> agentEntityList = pointConsoleService.listAllAgent();
+        List<AgentVO> list = new ArrayList<>();
+        for(TAgentEntity entity : agentEntityList){
+            list.add(IAgentMapper.INSTANCE.entityToVO(entity));
+        }
+        return Response.success(list);
     }
 }
